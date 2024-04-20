@@ -61,16 +61,5 @@ public class BankTransferAppConfig
         config.confirmation = confirmation;
     }
 
-    public BankTransferAppConfig()
-    {
-        try
-        {
-            ReadConfigFile();
-        }
-        catch
-        {
-            SetDefault();
-            WriteNewConfigFile();
-        }
-    }
+   
 }
