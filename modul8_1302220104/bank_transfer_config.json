@@ -1,25 +1,18 @@
 {
-
-  "lang": "CONFIG1",
-
+  "lang": "id",
   "transfer": {
-
-    "threshold": "CONFIG2",
-
-    "low_fee": "CONFIG3",
-
-    "high_fee": "CONFIG4"
-
+    "threshold": 25000000,
+    "low_fee": 6500,
+    "high_fee": 15000
   },
-
-  "methods": "CONFIG5",
-
+  "methods": [
+    "RTO ",
+    "SKN",
+    "RTGS",
+    "BI FAST"
+  ],
   "confirmation": {
-
-    "en": "CONFIG6",
-
-    "id": "CONFIG7"
-
+    "en": "yes",
+    "id": "ya"
   }
-
 }

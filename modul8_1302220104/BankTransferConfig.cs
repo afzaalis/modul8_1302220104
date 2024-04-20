@@ -26,11 +26,11 @@ public class BankTransferConfig
 public class BankTransferAppConfig
 {
     public BankTransferConfig config;
-    private const String file_path = "bank_transfer_config.json";
+    const String filepPath = "bank_transfer_config.json";
 
     private void ReadConfigFile()
     {
-        string configJsonData = File.ReadAllText(file_path);
+        string configJsonData = File.ReadAllText(filepPath);
         config = JsonSerializer.Deserialize<BankTransferConfig>(configJsonData);
     }
 
@@ -41,7 +41,7 @@ public class BankTransferAppConfig
             WriteIndented = true
         };
         string jsonString = JsonSerializer.Serialize(config, option);
-        File.WriteAllText(file_path, jsonString);
+        File.WriteAllText(filepPath, jsonString);
     }
 
     private void SetDefault()
@@ -54,7 +54,7 @@ public class BankTransferAppConfig
         transfer.low_fee = 6500;
         transfer.high_fee = 15000;
         config.transfer = transfer;
-        config.methods = new string[] { "RTO (real-time)", "SKN", "RTGS", "BI FAST" };
+        config.methods = new string[] { "RTO ", "SKN", "RTGS", "BI FAST" };
         ConfirmationClass confirmation = new();
         confirmation.en = "yes";
         confirmation.id = "ya";

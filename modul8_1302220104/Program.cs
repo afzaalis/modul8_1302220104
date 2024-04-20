@@ -1,39 +1,66 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System.Numerics;
+﻿using System.Numerics;
 using modul8_1302220104;
 
-BankTransferAppConfig configAPP = new BankTransferAppConfig();
+BankTransferAppConfig configApp = new BankTransferAppConfig();
 
-string lang = configAPP.config.lang;
+string lang = configApp.config.lang;
 
 if (lang == "en")
 {
-    Console.WriteLine("please insert amount of money to transfer:");
-}else if  (lang == "id")
+    Console.WriteLine("Please insert the amount of money to transfer");
+}
+else if (lang == "id")
 {
-    Console.WriteLine("masukan jumlah uang untuk ditransfer:");
+    Console.WriteLine("Masukan jumlah uang yang akan di-transfer");
+}
+int nominal_transfer = int.Parse(Console.ReadLine());
+
+int biaya_transfer =
+    (nominal_transfer > configApp.config.transfer.threshold)
+    ? configApp.config.transfer.high_fee
+    : configApp.config.transfer.low_fee;
+
+if (lang == "en")
+{
+    Console.WriteLine($"transfer fee = {biaya_transfer}");
+    Console.WriteLine($"total amount = {nominal_transfer + biaya_transfer}");
+    Console.WriteLine("\nSelect transfer method:");
+}
+else if (lang == "id")
+{
+    Console.WriteLine($"Biaya transfer = {biaya_transfer}");
+    Console.WriteLine($"Total biaya = {nominal_transfer + biaya_transfer}");
+    Console.WriteLine("\nPilih metode transfer:");
 }
 
-int nom_tf = int.Parse(Console.ReadLine());
-
-int biaya_tf =
-    (nom_tf > configAPP.config.transfer.threshold) ? configAPP.config.transfer.threshold : nom_tf;
-
-if (lang == "eng")
+for (int i = 0; i < configApp.config.methods.Length; i++)
 {
-    Console.WriteLine($"transfer fee :{biaya_tf}");
-    Console.WriteLine($"total amount :{nom_tf}");
-
-    Console.WriteLine("select transfer method:");
-}else if (lang == "id")
-{
-    Console.WriteLine($"biaya transfer :{biaya_tf}");
-    Console.WriteLine($"nominal transfer :{nom_tf}");
-
-    Console.WriteLine("pilih methode transfer:");
+    Console.WriteLine((i + 1) + ". " + configApp.config.methods[i]);
 }
+Console.ReadLine();
 
-for (int i = 0; i < configAPP.config.transfer.threshold; i++)
+Console.WriteLine();
+if (lang == "en")
 {
-    
+    Console.WriteLine($"Please type {configApp.config.confirmation.en} to confirm the transaction");
+}
+else if (lang == "id")
+{
+    Console.WriteLine($"Ketik {configApp.config.confirmation.id} untuk mengonfirmasi transaksi");
+}
+string konfirmasi = Console.ReadLine();
+
+if (lang == "en")
+{
+    Console.WriteLine(
+        (konfirmasi == configApp.config.confirmation.en)
+        ? "The transfer is completed"
+        : "Transfer is cancelled");
+}
+else if (lang == "id")
+{
+    Console.WriteLine(
+            (konfirmasi == configApp.config.confirmation.id)
+            ? "Proses transfer berhasil"
+            : "Transfer dibatalkan");
 }
